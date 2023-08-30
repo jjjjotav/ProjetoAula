@@ -1,0 +1,16 @@
+/* Estilos personalizados para o seu blog */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para o rodapé */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para o conteúdo principal */
+.container {
+    padding: 20px;
+}

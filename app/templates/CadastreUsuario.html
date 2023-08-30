@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+
+<!-- Conteúdo da Página -->
+<div class="container mt-5">
+    <h1>Cadastre-se</h1>
+    <p>
+        Crie uma conta para acessar conteúdo exclusivo e recursos adicionais do nosso blog.
+    </p>
+    
+    <form action="/dados" method="post">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+            <label for="email">Endereço de Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Seu email">
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar:</button>
+    </form>
+</div>
+
+{% endblock %}

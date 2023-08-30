@@ -1,0 +1,33 @@
+/* Estilos personalizados para o seu blog */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para o rodapé */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para o conteúdo principal */
+.container {
+    padding: 20px;
+}
+
+/* Estilos para os cards de membros da equipe */
+.card {
+    border: none;
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Adicione estilos adicionais conforme necessário */

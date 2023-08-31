@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testeeeeeeeeee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-screen h-screen flex items-center justify-center">
+      <div
+        id="form"
+        class="w-96 h-max flex flex-col gap-2 p-4 items-center border border-black/50 rounded-xl shadow-lg"
+        style="justify-content: space-between"
+      >
+        <label for="name">Nome:</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          class="w-full rounded-full outline-none border border-black/50 h-12 pl-12"
+        />
+        <label for="password">Senha:</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          class="w-full rounded-full outline-none border border-black/50 h-12 pl-12"
+        />
+        <button
+          onclick="sendForm()"
+          class="w-full border border-black/50 bg-blue-200 h-12 rounded-full"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+    <script>
+      async function sendForm() {
+        const form = {
+          name: document.querySelector("#name").value,
+          password: document.querySelector("#password").value,
+        };
+
+        await fetch("http://127.0.0.1:5000/cadastrarUsuario", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body:{
+            name: form.name,
+            password: form.password
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

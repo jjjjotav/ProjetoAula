@@ -1,5 +1,10 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, flash, redirect
+from flask_json import FlaskJSON, JsonError, json_response, as_json
+import sqlite3
+from app.forms import Cadastro
+
+
 
 @app.route('/')
 def index():
@@ -23,7 +28,15 @@ def Sobre():
 
 @app.route('/CadastreUsuario')
 def CadastreUsuario():
-    return render_template('CadastreUsuario.html', title = 'Cadastar Usuario')
+    cadastro = Cadastro()
+    nome = cadastro.nome.data
+    email = cadastro.email.data
+    senha = cadastro.senha.data
+
+    if cadastro.validate_on_submit():
+        flash('Cadastrado')
+
+    return render_template('CadastreUsuario.html', title = 'Cadastar Usuario', cadastro = cadastro)
 
 @app.route('/Login')
 def Login():
@@ -34,7 +47,39 @@ def dados():
     nome = request.form.get('nome')
     email = request.form.get('email')
     senha = request.form.get('senha')
-    return f"Nome: {nome}\nEmail: {email}\nSenha: {senha}"
+
+    conn = sqlite3.connect('BancoDB.sqlite')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO cadastroUser(nome, email, senha)
+            VALUES (?, ?, ?)
+        ''', (f'{nome}', f'{email}', f'{senha}'))
+    conn.commit()
+    print('Dados inseridos com sucesso.')
+    conn.close()
+
+    if len(senha) != 0:
+        flash('DADOS CADASTRADO!!')
+    return redirect('/CadastreUsuario')
+
+
+
+
+
+
+@app.route('/cadastrarUsuario', methods=['POST'])
+def cadastrarUsuario():
+    data = request.get_json(force=True)
+    name = data['name']
+    password = data['password']
+
+    print(f'Nome: {name}\nPassword: {password}')
+
+
+
+@app.route('/teste')
+def teste():
+    return render_template('testeee.html')
 
 
 

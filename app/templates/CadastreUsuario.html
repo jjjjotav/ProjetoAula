@@ -9,18 +9,27 @@
         Crie uma conta para acessar conteúdo exclusivo e recursos adicionais do nosso blog.
     </p>
     
+    {% set menssagem = get_flashed_messages() %}
+    {% if menssagem %}
+        <div class="alert alert-success" role="alert">
+            {{menssagem[0]}}
+          </div>
+    {% endif %}
     <form action="/dados" method="post">
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome">
+            <!--input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome"-->
+            {{ cadastro.nome(type="text", class="form-control", id="nome", placeholder="Seu nome")}}
         </div>
         <div class="form-group">
             <label for="email">Endereço de Email:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Seu email">
+            <!-- <input type="email" class="form-control" id="email" name="email" placeholder="Seu email"> -->
+            {{ cadastro.email(type="email", class="form-control", id="email", placeholder="Seu email")}}
         </div>
         <div class="form-group">
             <label for="senha">Senha:</label>
-            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+            <!-- <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha"> -->
+            {{ cadastro.senha(type="password", class="form-control", id="senha", placeholder="Senha")}}
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar:</button>
     </form>
